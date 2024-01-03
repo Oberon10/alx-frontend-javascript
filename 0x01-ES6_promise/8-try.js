@@ -1,7 +1,7 @@
 /* eslint-disable */
-export default function divideFunction(number, denominator) {
+export default function divideFunction(numerator, denominator) {
   if (denominator === 0) {
-    throw new Error("connot divide by 0");
+    throw new Error("cannot divide by 0");
   }
   return numerator / denominator;
 }
