@@ -1,48 +1,50 @@
-export default class HolbertonCourse {
-  constructor(name, length, students) {
-    if (typeof name !== 'string') {
-      throw new TypeError('Name must be a string');
-    } else if (typeof length !== 'number') {
-      throw new TypeError('Length must be a number');
-    } else if (!Array.isArray(students)) {
-      throw new TypeError('Students must be an array of strings');
+import Currency from './3-currency';
+
+export default class Pricing {
+  constructor(amount, currency) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    } else if (!(currency instanceof Currency)) {
+      throw new TypeError('Currency must be an instance of class Currency');
     }
 
-    this._name = name;
-    this._length = length;
-    this._students = students;
+    this._amount = amount;
+    this._currency = currency;
   }
 
-  get name() {
-    return this._name;
+  get amount() {
+    return this._amount;
   }
 
-  get length() {
-    return this._length;
+  get currency() {
+    return this._currency;
   }
 
-  get students() {
-    return this._students;
-  }
-
-  set name(name) {
-    if (typeof name !== 'string') {
-      throw new TypeError('Name must be a string');
+  set amount(amount) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
     }
-    this._name = name;
+    this._amount = amount;
   }
 
-  set length(length) {
-    if (typeof length !== 'number') {
-      throw new TypeError('Length must be a number');
+  set currency(currency) {
+    if (!(currency instanceof Currency)) {
+      throw new TypeError('Currency must be an instance of class Currency');
     }
-    this._length = length;
+    this._currency = currency;
   }
 
-  set students(students) {
-    if (!Array.isArray(students)) {
-      throw new TypeError('Students must be an array of strings');
+  displayFullPrice() {
+    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+  }
+
+  static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    } else if (typeof conversionRate !== 'number') {
+      throw new TypeError('Conversion rate must be a number');
     }
-    this._students = students;
+
+    return amount * conversionRate;
   }
 }
