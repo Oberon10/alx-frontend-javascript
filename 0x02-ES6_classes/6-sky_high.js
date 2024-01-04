@@ -15,4 +15,4 @@ class SkyHighBuilding extends Building {
   }
 }
 
-export default SkyHighBuildin
+export default SkyHighBuilding;
